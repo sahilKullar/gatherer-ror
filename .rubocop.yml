@@ -184,3 +184,9 @@ Rails/Delegate:
 
 Bundler/OrderedGems:
   Enabled: false
+
+RSpec/ExampleLength:
+  Max: 12
+
+RSpec/MultipleExpectations:
+  Max: 8
