@@ -3,6 +3,9 @@ require "rails_helper"
 RSpec.describe Task do
   let(:task) { described_class.new }
 
+  # it_should_behave_like "sizeable"
+  it_behaves_like "sizeable"
+
   describe "initialization" do
     it "does not have a new task as complete" do
       expect(task).not_to be_complete
@@ -16,7 +19,7 @@ RSpec.describe Task do
 
   # Start: new_velocity
   describe "velocity" do
-    let(:task) { Task.new(size: 3) }
+    let(:task) { described_class.new(size: 3) }
 
     it "does not count an incomplete task toward velocity" do
       expect(task).not_to be_a_part_of_velocity
