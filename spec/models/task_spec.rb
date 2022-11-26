@@ -17,7 +17,6 @@ RSpec.describe Task do
     end
   end
 
-  # Start: new_velocity
   describe "velocity" do
     let(:task) { described_class.new(size: 3) }
 
@@ -38,5 +37,4 @@ RSpec.describe Task do
       expect(task.points_toward_velocity).to eq(0)
     end
   end
-  # END: new_velocity
 end
