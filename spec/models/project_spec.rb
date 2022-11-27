@@ -3,6 +3,58 @@ require "rails_helper"
 RSpec.describe Project do
   it_behaves_like "sizeable"
 
+  describe "stubs" do
+    it "stubs an object" do
+      project = described_class.new(name: "Project Greenlight")
+      allow(project).to receive(:name)
+      expect(project.name).to be_nil
+    end
+
+    it "stubs an object again" do
+      project = described_class.new(name: "Project Greenlight")
+      allow(project).to receive(:name).and_return("Fred")
+      expect(project.name).to eq("Fred")
+    end
+
+    it "stubs the class" do
+      allow(described_class).to receive(:find).and_return(described_class.new(name: "Project Greenlight"))
+      project = described_class.find(1)
+      expect(project.name).to eq("Project Greenlight")
+    end
+
+    it "stubs the class again" do
+      allow(described_class).to receive(:find).with(1).and_return(described_class.new(name: "Project Greenlight"))
+      allow(described_class).to receive(:find).with(3).and_return(described_class.new(name: "Project Runway"))
+      # allow(described_class).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
+      project = described_class.find(1)
+      expect(project.name).to eq("Project Greenlight")
+    end
+
+    it "mocks an object" do
+      mock_project = described_class.new(name: "Project Greenlight")
+      expect(mock_project).to receive(:name).and_return("Fred")
+      expect(mock_project.name).to eq("Fred")
+    end
+
+    it "expects stuff" do
+      mocky = double("Mock")
+      expect(mocky).to receive(:name).and_return("Paul")
+      expect(mocky).to receive(:weight).and_return(100)
+      expect(mocky.name).to eq("Paul")
+      expect(mocky.weight).to eq(100)
+    end
+  end
+
+  describe "mocking a failure" do
+    it "fails when we say it fails" do
+      project = instance_spy(described_class, save: false)
+      allow(described_class).to receive(:new).and_return(project)
+      creator = CreatesProject.new(name: "Name", task_string: "Task")
+      creator.create
+      expect(creator).not_to be_success # or be_a_success
+    end
+  end
+
   describe "completion" do
     ## START: with_basic_factories
     describe "without a task" do

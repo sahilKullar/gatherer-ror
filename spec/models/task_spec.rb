@@ -15,6 +15,14 @@ RSpec.describe Task do
       task.mark_completed
       expect(task).to be_complete
     end
+
+    it "stubs with multiple return values" do
+      task = Task.new
+      allow(task).to receive(:size).and_return(1, 2)
+      assert_equal(1, task.size)
+      assert_equal(2, task.size)
+      assert_equal(2, task.size)
+    end
   end
 
   describe "velocity" do
