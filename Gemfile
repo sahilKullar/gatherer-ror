@@ -76,4 +76,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "database_cleaner"
+  gem "capybara-screenshot"
 end
