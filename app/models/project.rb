@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
   include Sizeable
 
-  has_many :tasks, dependent: :destroy
+  has_many :tasks, -> { order "project_order ASC" }, dependent: :destroy
   validates :name, presence: true
 
   def self.velocity_length_in_days
@@ -40,5 +40,11 @@ class Project < ApplicationRecord
     return false if projected_days_remaining.nan? || projected_days_remaining.infinite?
 
     (Time.zone.today + projected_days_remaining) <= due_date
+  end
+
+  def next_task_order
+    return 1 if tasks.empty?
+
+    (tasks.last.project_order || tasks.size) + 1
   end
 end

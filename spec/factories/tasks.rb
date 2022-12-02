@@ -8,6 +8,7 @@ FactoryBot.define do
     sequence(:title) { |n| "Task #{n}" }
     size { "3" }
     completed_at { "nil" }
+    project_order { 1 }
     project
 
     trait :small do
