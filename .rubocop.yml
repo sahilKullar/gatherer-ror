@@ -186,7 +186,7 @@ Bundler/OrderedGems:
   Enabled: false
 
 RSpec/ExampleLength:
-  Max: 12
+  Max: 20
 
 RSpec/MultipleExpectations:
   Max: 8
