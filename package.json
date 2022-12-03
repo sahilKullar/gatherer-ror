@@ -1,0 +1,11 @@
+{
+  "name": "gatherer-ror",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:sahilKullar/gatherer-ror.git",
+  "author": "Sahil Kullar <sahil_kullar@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.6.1"
+  }
+}
