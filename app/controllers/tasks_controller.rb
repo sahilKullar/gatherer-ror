@@ -7,6 +7,18 @@ class TasksController < ApplicationController
     redirect_to(@project)
   end
 
+  def update
+    @task = Task.find(params[:id])
+    completed = params[:task][:completed] == "true" && !@task.complete?
+    params[:task][:completed_at] = Time.current if completed
+    if @task.update(task_params)
+      TaskMailer.task_completed_email(@task).deliver if completed
+      redirect_to @task, notice: "project was successfully updated"
+    else
+      render action :edit
+    end
+  end
+
   def up
     @task.move_up
     redirect_to(@task.project)
