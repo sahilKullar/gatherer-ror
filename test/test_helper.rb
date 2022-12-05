@@ -12,3 +12,8 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+def assert_select_string(string, *selectors, &)
+  doc_root = Nokogiri::HTML::Document.parse(string).root
+  assert_select(doc_root, *selectors, &)
+end
