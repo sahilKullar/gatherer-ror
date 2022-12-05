@@ -56,8 +56,9 @@ group :development, :test do
   gem "rubocop-performance"
   gem "rubocop-rails"
   gem "rubocop-rspec"
-  gem 'factory_bot_rails'
-  gem 'cucumber-rails', require: false
+  gem "factory_bot_rails"
+  gem "cucumber-rails", require: false
+  gem "mocha", require: false
 end
 
 group :development do
