@@ -80,3 +80,5 @@ group :test do
   gem "database_cleaner"
   gem "capybara-screenshot"
 end
+
+gem "devise"

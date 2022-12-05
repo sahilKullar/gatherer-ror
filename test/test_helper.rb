@@ -17,3 +17,15 @@ def assert_select_string(string, *selectors, &)
   doc_root = Nokogiri::HTML::Document.parse(string).root
   assert_select(doc_root, *selectors, &)
 end
+
+module ActionController
+  class TestCase
+    include Devise::Test::ControllerHelpers
+  end
+end
+
+module ActionDispatch
+  class IntegrationTest
+    include Devise::Test::IntegrationHelpers
+  end
+end
