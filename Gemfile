@@ -59,6 +59,10 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "cucumber-rails", require: false
   gem "mocha", require: false
+  gem "pry-rails"
+  gem "pry-byebug"
+  gem "pry-stack_explorer"
+  gem "pry-rescue"
 end
 
 group :development do
@@ -79,9 +83,9 @@ group :test do
   gem "webdrivers"
   gem "database_cleaner"
   gem "capybara-screenshot"
-  gem 'twitter'
-  gem 'vcr', group: :test
-  gem 'webmock', group: :test
+  gem "twitter"
+  gem "vcr", group: :test
+  gem "webmock", group: :test
 end
 
 gem "devise"
