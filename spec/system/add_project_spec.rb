@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "adding a project" do
+  before do
+    sign_in(create(:user))
+  end
+
   it "allows a user to create a project with tasks" do
     visit new_project_path
     fill_in "Name", with: "Project Runway"

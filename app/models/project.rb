@@ -3,6 +3,8 @@ class Project < ApplicationRecord
 
   has_many :tasks, -> { order "project_order ASC" }, dependent: :destroy
   validates :name, presence: true
+  has_many :roles, dependent: :destroy
+  has_many :users, through: :roles
 
   def self.velocity_length_in_days
     21
@@ -46,5 +48,9 @@ class Project < ApplicationRecord
     return 1 if tasks.empty?
 
     (tasks.last.project_order || tasks.size) + 1
+  end
+
+  def self.all_public
+    where(public: true)
   end
 end
