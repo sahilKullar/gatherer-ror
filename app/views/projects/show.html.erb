@@ -12,7 +12,14 @@
     <tr id="task_<%= task.project_order %>" data-task-id=<%= task.id %>>
       <td class="name"><%= task.title %></td>
       <td class="size"><%= task.size %></td>
-      <td class="completed"><%= task.completed_at %></td>
+<!--      <td class="completed"><%#= task.completed_at %></td>-->
+      <td class="completed">
+        <% if task.complete? %>
+          <%= task.user.email %>
+          <%= task.completed_at.to_s %>
+          <img src="<%= task.user.avatar_url %>" />
+        <% end %>
+      </td>
       <td>
         <button class="up-button">Up</button>
         <button class="down-button">Down</button>

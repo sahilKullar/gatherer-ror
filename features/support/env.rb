@@ -4,7 +4,7 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-require 'cucumber/rails'
+require "cucumber/rails"
 
 # frozen_string_literal: true
 
@@ -58,3 +58,7 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+VCR.cucumber_tags do |t|
+  t.tag "@vcr", use_scenario_name: true
+  t.tags "@twitter", "@facebook"
+end

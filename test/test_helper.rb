@@ -29,3 +29,23 @@ module ActionDispatch
     include Devise::Test::IntegrationHelpers
   end
 end
+
+require "capybara/rails"
+require "capybara/minitest"
+
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+  include Capybara::Minitest::Assertions
+
+  # Reset sessions and driver between tests
+  teardown do
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+end
+
+VCR.configure do |c|
+  c.cassette_library_dir = "test/vcr"
+  c.hook_into :webmock
+  c.ignore_localhost = true
+end
