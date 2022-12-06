@@ -79,6 +79,9 @@ group :test do
   gem "webdrivers"
   gem "database_cleaner"
   gem "capybara-screenshot"
+  gem 'twitter'
+  gem 'vcr', group: :test
+  gem 'webmock', group: :test
 end
 
 gem "devise"
